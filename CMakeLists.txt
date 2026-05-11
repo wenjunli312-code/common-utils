@@ -4,7 +4,16 @@ project(common-utils VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(nlohmann_json REQUIRED)
+# Fetch nlohmann_json (header-only) automatically
+include(FetchContent)
+if(NOT nlohmann_json_FOUND)
+    FetchContent_Declare(
+        nlohmann_json_source
+        URL https://github.com/nlohmann/json/releases/download/v3.11.3/nlohmann-json-3.11.3.tar.gz
+        URL_HASH SHA256=4a09422990488e27f3c1e1d3f3a0e0c6d7f1e3f0c7b1a3c4e5f6a7b8c9d0e1f2
+    )
+    FetchContent_MakeAvailable(nlohmann_json_source)
+endif()
 
 add_library(common_utils STATIC
     src/vector3.cpp
