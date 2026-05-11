@@ -4,7 +4,6 @@ project(common-utils VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(spdlog REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
 add_library(common_utils STATIC
@@ -22,7 +21,6 @@ target_include_directories(common_utils
 
 target_link_libraries(common_utils
     PUBLIC
-        spdlog::spdlog
         nlohmann_json::nlohmann_json
 )
 
