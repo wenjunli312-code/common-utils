@@ -10,7 +10,7 @@ if(NOT nlohmann_json_FOUND)
     FetchContent_Declare(
         nlohmann_json_source
         URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
-        URL_HASH SHA256=4a09422990488e27f3c1e1d3f3a0e0c6d7f1e3f0c7b1a3c4e5f6a7b8c9d0e1f2
+        URL_HASH SHA256=d6c65aca6b1ed68e7a182f4757257b107ae403032760ed6ef121c9d55e81757d
     )
     FetchContent_MakeAvailable(nlohmann_json_source)
 endif()
