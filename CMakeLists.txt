@@ -4,6 +4,9 @@ project(common-utils VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# thirdparty is cloned into src/thirdparty, add it to CMAKE_PREFIX_PATH so
+# find_package(nlohmann_json) can locate the config file generated here.
+list(PREPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../thirdparty")
 find_package(nlohmann_json REQUIRED)
 
 add_library(common_utils STATIC
