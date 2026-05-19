@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/CMakeFiles/nlohmann_json_source-populate"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/CMakeFiles/nlohmann_json_source-populate.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/CMakeFiles/nlohmann_json_source-populate-complete.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/nlohmann_json_source-populate-prefix/src/nlohmann_json_source-populate-stamp/nlohmann_json_source-populate-build.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/nlohmann_json_source-populate-prefix/src/nlohmann_json_source-populate-stamp/nlohmann_json_source-populate-configure.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/nlohmann_json_source-populate-prefix/src/nlohmann_json_source-populate-stamp/nlohmann_json_source-populate-download.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/nlohmann_json_source-populate-prefix/src/nlohmann_json_source-populate-stamp/nlohmann_json_source-populate-install.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/nlohmann_json_source-populate-prefix/src/nlohmann_json_source-populate-stamp/nlohmann_json_source-populate-mkdir.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/nlohmann_json_source-populate-prefix/src/nlohmann_json_source-populate-stamp/nlohmann_json_source-populate-patch.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/nlohmann_json_source-populate-prefix/src/nlohmann_json_source-populate-stamp/nlohmann_json_source-populate-test.rule"
+		},
+		{
+			"file" : "/src/src/common-utils/build/_deps/nlohmann_json_source-subbuild/nlohmann_json_source-populate-prefix/src/nlohmann_json_source-populate-stamp/nlohmann_json_source-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"nlohmann_json_source-populate"
+		],
+		"name" : "nlohmann_json_source-populate"
+	}
+}
