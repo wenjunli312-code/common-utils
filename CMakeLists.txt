@@ -13,16 +13,16 @@ add_library(common_utils STATIC
     src/config.cpp
 )
 
-# nlohmann_json is header-only; use PRIVATE to avoid export issues.
-# The Config.cmake will find nlohmann_json separately for downstream.
-target_link_libraries(common_utils PRIVATE nlohmann_json)
-
-# Include dirs for both build tree and install tree
+# nlohmann_json is header-only. Instead of PUBLIC linking (which breaks export),
+# we directly add its include directory.
 target_include_directories(common_utils
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
+# For BUILD tree: add nlohmann_json include dir
+get_target_property(_nlohmann_inc nlohmann_json INTERFACE_INCLUDE_DIRECTORIES)
+target_include_directories(common_utils PUBLIC "${_nlohmann_inc}")
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
@@ -55,6 +55,5 @@ install(
     DESTINATION lib/cmake/common-utils
 )
 
-# Tests
 enable_testing()
 add_subdirectory(tests)

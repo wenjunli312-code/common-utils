@@ -4,11 +4,11 @@ include(CMakeFindDependencyMacro)
 find_dependency(nlohmann_json REQUIRED)
 include("${CMAKE_CURRENT_LIST_DIR}/common-utilsTargets.cmake")
 
-# nlohmann_json was PRIVATE during build; propagate its include dir to downstream
-get_target_property(_nlohmann_include_dir nlohmann_json INTERFACE_INCLUDE_DIRECTORIES)
-if(_nlohmann_include_dir)
+# Add nlohmann's include dir to the exported target
+get_target_property(_nlohmann_inc nlohmann_json INTERFACE_INCLUDE_DIRECTORIES)
+if(_nlohmann_inc AND TARGET common-utils::common_utils)
   set_property(TARGET common-utils::common_utils APPEND PROPERTY
-    INTERFACE_INCLUDE_DIRECTORIES "${_nlohmann_include_dir}")
+    INTERFACE_INCLUDE_DIRECTORIES "${_nlohmann_inc}")
 endif()
 
 check_required_components(common-utils)
