@@ -25,11 +25,46 @@ target_include_directories(common_utils
 
 include(GNUInstallDirs)
 
+# CMake config for downstream find_package
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/common-utilsConfigVersion.cmake"
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/common_utilsConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/common-utilsConfig.cmake"
+    INSTALL_DESTINATION lib/cmake/common-utils
+)
+
 install(TARGETS common_utils
+    EXPORT common-utilsTargets
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-install(DIRECTORY include/
+install(
+    DIRECTORY include/
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
+
+install(
+    EXPORT common-utilsTargets
+    FILE common-utilsTargets.cmake
+    NAMESPACE common_utils::
+    DESTINATION lib/cmake/common-utils
+)
+
+install(
+    FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/common-utilsConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/common-utilsConfigVersion.cmake"
+    DESTINATION lib/cmake/common-utils
+)
+
+# Tests
+enable_testing()
+add_subdirectory(tests)
