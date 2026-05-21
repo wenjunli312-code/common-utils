@@ -1,26 +1,9 @@
 @PACKAGE_INIT@
 
-# Guard against re-load if already found
-if(common-utils_FOUND)
-  return()
-endif()
-
 include(CMakeFindDependencyMacro)
 
 # Propagate external dependencies so consumers don't need to find them separately
 find_dependency(nlohmann_json REQUIRED)
 
-# Create a manually-imported target with the HYPHEN name directly
-# (the project name is "common-utils", so the expected namespace is "common-utils::")
-if(NOT TARGET common-utils::common-utils)
-  add_library(common-utils::common-utils STATIC IMPORTED)
-  set_target_properties(common-utils::common-utils PROPERTIES
-    IMPORTED_LOCATION "${PACKAGE_PREFIX_DIR}/lib/libcommon_utils.a"
-    INTERFACE_INCLUDE_DIRECTORIES "${PACKAGE_PREFIX_DIR}/include"
-  )
-  # NOTE: nlohmann_json's third-party Config.cmake creates a plain `nlohmann_json`
-  # target (no namespace), so we reference it without :: prefix
-  target_link_libraries(common-utils::common-utils INTERFACE nlohmann_json)
-endif()
-
-check_required_components(common-utils)
+# Include the generated targets file
+include("${CMAKE_CURRENT_LIST_DIR}/common-utilsTargets.cmake")

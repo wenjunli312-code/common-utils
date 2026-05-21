@@ -4,8 +4,6 @@ project(common-utils VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# nlohmann_json is a header-only third-party library
-# Found via CMAKE_PREFIX_PATH pointing to third_party/{platform}/nlohmann_json/
 find_package(nlohmann_json CONFIG REQUIRED)
 
 add_library(common_utils STATIC
@@ -24,8 +22,6 @@ target_include_directories(common_utils
 )
 
 include(GNUInstallDirs)
-
-# CMake config for downstream find_package
 include(CMakePackageConfigHelpers)
 
 write_basic_package_version_file(
@@ -34,15 +30,15 @@ write_basic_package_version_file(
     COMPATIBILITY AnyNewerVersion
 )
 
-configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/common_utilsConfig.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/common-utilsConfig.cmake"
-    INSTALL_DESTINATION lib/cmake/common-utils
+install(TARGETS common_utils
+    EXPORT common-utilsTargets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-install(TARGETS common_utils
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+install(EXPORT common-utilsTargets
+    FILE common-utilsTargets.cmake
+    NAMESPACE common-utils::
+    DESTINATION lib/cmake/common-utils
 )
 
 install(
@@ -52,7 +48,6 @@ install(
 
 install(
     FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/common-utilsConfig.cmake"
         "${CMAKE_CURRENT_BINARY_DIR}/common-utilsConfigVersion.cmake"
     DESTINATION lib/cmake/common-utils
 )
