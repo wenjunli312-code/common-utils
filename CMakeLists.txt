@@ -23,6 +23,8 @@ target_include_directories(common_utils
         $<INSTALL_INTERFACE:include>
 )
 
+include(GNUInstallDirs)
+
 install(TARGETS common_utils
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
