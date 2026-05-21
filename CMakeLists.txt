@@ -41,7 +41,6 @@ configure_package_config_file(
 )
 
 install(TARGETS common_utils
-    EXPORT common-utilsTargets
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
@@ -49,13 +48,6 @@ install(TARGETS common_utils
 install(
     DIRECTORY include/
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
-
-install(
-    EXPORT common-utilsTargets
-    FILE common-utilsTargets.cmake
-    NAMESPACE common_utils::
-    DESTINATION lib/cmake/common-utils
 )
 
 install(

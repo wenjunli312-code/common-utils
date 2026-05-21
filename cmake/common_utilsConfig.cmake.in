@@ -5,11 +5,20 @@ include(CMakeFindDependencyMacro)
 # Propagate external dependencies so consumers don't need to find them separately
 find_dependency(nlohmann_json REQUIRED)
 
-include("${CMAKE_CURRENT_LIST_DIR}/common-utilsTargets.cmake")
+# Create imported target manually (auto-generated install(EXPORT) cannot handle
+# nlohmann_json which is an external imported target not in the export set)
+if(NOT TARGET common_utils::common_utils)
+  add_library(common_utils::common_utils STATIC IMPORTED)
+  set_target_properties(common_utils::common_utils PROPERTIES
+    IMPORTED_LOCATION "${PACKAGE_PREFIX_DIR}/lib/libcommon_utils.a"
+    INTERFACE_INCLUDE_DIRECTORIES "${PACKAGE_PREFIX_DIR}/include"
+  )
+  target_link_libraries(common_utils::common_utils INTERFACE nlohmann_json::nlohmann_json)
+endif()
 
 # Provide alias common-utils::common_utils (hyphen) -> common_utils::common_utils (underscore)
-if(NOT TARGET common-utils::common_utils)
-  add_library(common-utils::common_utils ALIAS common_utils::common_utils)
+if(NOT TARGET common-utils::common-utils)
+  add_library(common-utils::common-utils ALIAS common_utils::common_utils)
 endif()
 
 check_required_components(common_utils)
