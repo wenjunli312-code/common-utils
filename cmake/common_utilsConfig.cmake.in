@@ -13,7 +13,9 @@ if(NOT TARGET common_utils::common_utils)
     IMPORTED_LOCATION "${PACKAGE_PREFIX_DIR}/lib/libcommon_utils.a"
     INTERFACE_INCLUDE_DIRECTORIES "${PACKAGE_PREFIX_DIR}/include"
   )
-  target_link_libraries(common_utils::common_utils INTERFACE nlohmann_json::nlohmann_json)
+  # NOTE: nlohmann_json's third-party Config.cmake creates a plain `nlohmann_json`
+  # target (no namespace), so we reference it without :: prefix
+  target_link_libraries(common_utils::common_utils INTERFACE nlohmann_json)
 endif()
 
 # Provide alias common-utils::common_utils (hyphen) -> common_utils::common_utils (underscore)
